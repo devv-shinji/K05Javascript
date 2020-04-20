@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보NEW</title>
+
+    <style>
+        td {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #showResult {
+            color: black;
+        }
+        tr:nth-child(2) td{
+            height: 330px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <script>
+        var comNum;
+        var userNum;
+        var flag;
+        
+        function playGame(num) {
+            userNum = num; //유저선택
+            comNum = parseInt(Math.random()*3 + 1); //컴퓨터-난수생성
+            
+            //컴퓨터 선택 -> 이미지출력
+            com_select = numToImg(comNum); 
+            com_img = document.getElementById("com_game");
+            com_img.src = "./images/"+ com_select +".jpg";
+
+            //유저 선택 -> 이미지출력
+            user_select = numToImg(userNum);
+            user_img = document.getElementById("user_game");
+            user_img.src = "./images/"+ user_select +".jpg";
+
+            //게임결과
+            flag = showResult(comNum, userNum);
+            document.getElementById("showResult").innerHTML = flag;
+            console.log(flag);
+            
+        }
+
+        //이미지 전환
+        function numToImg(number) {
+            switch (number) {
+            case 1: 
+                return "scissors";
+            case 2: 
+                return "rock";
+            case 3: 
+                return "paper";
+            }
+        }
+
+        //승부판단 로직
+        function showResult(cNum, uNum) {
+            switch(uNum - cNum) {
+            case 0:
+                return "<span style='color:blue;'>흠 비겼네요... 한번 더!</span>";
+            case 1: case -2:
+                return "<span style='color:red;'>이겼습니다!!</span>";
+            case -1: case 2:
+                return "<span style='color:grey;'>졌습니다 ㅠㅠ</span>";
+            }
+        }
+
+    </script>
+
+
+    <h2>가위바위보게임 NEW</h2>
+
+    <table border="1">
+        <tr>
+            <td>컴퓨터</td>
+            <td>나</td>
+        </tr>
+        <tr>
+            <td><img id="com_game" src="./images/start.png" alt="가위바위보이미지"></td>
+            <td><img id="user_game" src="./images/start.png" alt="가위바위보이미지"></td>
+        </tr>
+        <tr>
+            <td colspan="2" id="showResult">아래 버튼을 누르시면 게임이 시작됩니다.</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="playGame(1);">가위</button>
+                <button onclick="playGame(2);">바위</button>
+                <button onclick="playGame(3);">보</button>
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+</html>
