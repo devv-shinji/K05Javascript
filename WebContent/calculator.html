@@ -84,7 +84,8 @@
                 case "=":
                     sum = sum.replace("x","*"); //x문자를 연산이 가능한 *로 변환
                     sum = eval(sum);
-                    // sum = sum.toFixed();
+                    result = sum;
+                    
                     break;
                 default:
                     sum += value; //입력값을 변수에 저장
