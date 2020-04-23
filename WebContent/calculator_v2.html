@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculate</title>
+
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+        
+        table {
+            width: 280px;
+            height: 400px;
+            background-image: linear-gradient(to bottom,  #304d6f, #192a43);
+            border-spacing: 5px;
+            /* border-radius: 10px; */
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+        table td {
+            border-radius: 13px;
+        }
+        table .screen {
+            height: 90px;
+            font-size: 40px;
+            color: #fff;
+            text-align: right;
+        }
+        table .screen>td {
+            padding-right: 20px;
+        }
+        table .bigKey {
+            background-color: #192a43;
+            color: #fff;
+            font-size: 20px;
+        }
+        table .bigKey td{
+            padding-bottom: 5px;
+        }
+        table .smallKey {
+            background-image: linear-gradient(to bottom,  #304d6f, #233c58);
+            color: #fff;
+        }
+        table .smallKey td:last-child {
+            background-image: linear-gradient(to bottom,  #ff9a44, #ef9d43, #e75516);
+            padding-bottom: 5px;
+        }
+    </style>
+
+    <script>
+        var tdArray = document.getElementsByTagName("td");
+        var sum = "";
+        var result = "";
+
+        window.onload = function() {
+            for (var i=0; i<tdArray.length; i++) {
+                //모든 td에 click리스너 추가
+                tdArray[i].addEventListener("click", calcul2); //계산기 2번
+            }
+        }
+
+        /******************계산기 2번******************/
+        function calcul2() {
+            var value = this.innerHTML;
+            var screen = document.getElementById("screen");
+            var hidden = document.getElementsByTagName("input");
+            var split;
+
+            //0을 없애고 문자를 입력받는다.
+            if(sum == 0){
+                sum = "";
+                result = "";
+            }
+
+            switch (value) {
+                case "":
+                    break;
+                case "BackSpace":
+                    //문자열 길이 -1 만큼 잘라서 저장
+                    sum = sum.substring(0, sum.length-1);
+                    result = sum;
+                    break;
+                case "C":
+                    sum = 0;
+                    result = 0;
+                    break;
+                case "=":
+                    sum = sum.replace("x","*"); //x문자를 연산이 가능한 *로 변환
+                    sum = eval(sum);
+                    result = sum;
+                    break;
+                case "/": case "x": case "+": case "-":
+                    sum += value; //입력값을 변수에 저장
+                    break;
+                default:
+                    sum += value; //입력값을 변수에 저장
+                    result += value;
+                    break;
+            }
+           
+            hidden.value = sum; //연산용도의 숨겨진 영역.
+            screen.innerHTML = result; //창에 출력한다.
+        }
+
+        
+    </script>
+</head>
+
+<body>
+    <table summary="계산기입니다.">
+        <colgroup>
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+        </colgroup>
+        <tr hidden><input type="hidden" value="0"></tr>
+        <tr class="screen">
+            <td id="screen" colspan="4">0</td>
+        </tr>
+        <tr class="bigKey">
+            <td colspan="2">BackSpace</td>
+            <td colspan="2">C</td>
+        </tr>
+        <tr class="smallKey">
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>/</td>
+        </tr>
+        <tr class="smallKey">
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>x</td>
+        </tr>
+        <tr class="smallKey">
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>+</td>
+        </tr>
+        <tr class="smallKey">
+            <td>=</td>
+            <td>0</td>
+            <td>.</td>
+            <td>-</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
