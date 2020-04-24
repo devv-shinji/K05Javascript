@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+        fieldset {
+            text-align: center;
+            font-family: 'Jua', sans-serif;
+        }
+        legend {
+            font-size: 40px;
+        }
+        h2 {
+            font-size: 30px;
+            font-weight: normal;
+        }
+        p {
+            font-size: 25px;
+        }
+        p span {
+            font-size: 40px;
+            color: blue;
+        }
+        #input_sec input {
+            vertical-align: middle;
+            margin-bottom: 8px;
+        }
+        #input_sec input {
+            height: 20px;
+            border: none;
+            border: 1px solid #909090;
+            border-radius: 3px;
+        }
+        #input_sec input[type=button] {
+            height: 24px;
+            
+        }
+        #result_sec {
+            width: 320px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        var count = 0;
+
+        function countGame() {
+            count++;
+            console.log("카운트 횟수: "+ count);
+        }
+
+        function playGame() {
+            console.log("게임시작함수 호출");
+
+        }
+
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>업다운게임</legend>
+        <h2>1~100 사이의 숫자를 입력하세요.</h2>
+        <br>
+        <div id="count_sec">
+            <p>시도횟수 : <span>0</span> 회</p>
+        </div>
+
+        <div id="input_sec">
+            <p>
+                숫자입력 : 
+                <input type="text"> 
+                <input type="button" value="확인" onclick="playGame(); countGame();">
+            </p>
+        </div>
+
+        <div id="result_sec">
+            <img src="./images/updowngame.jpg" alt="업다운게임 결과 이미지">
+        </div>
+
+    </fieldset>
+</body>
+</html>
